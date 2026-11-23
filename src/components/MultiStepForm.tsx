@@ -308,26 +308,23 @@ export default function MultiStepForm({ onComplete }: MultiStepFormProps) {
                                   key={opt.key || opt.value}
                                   type="button"
                                   onClick={() => handleSingleSelect(fieldMap[currentQuestion.id], opt.value)}
-                                  className={`w-full text-left p-3.5 sm:p-4 rounded-xl border transition-all duration-200 flex items-center justify-between group ${
-                                    isSelected
-                                      ? 'border-orange-500 bg-orange-500/15 shadow-gem'
-                                      : 'border-white/[0.08] bg-white/[0.02] hover:border-orange-500/40 hover:bg-white/[0.05]'
-                                  }`}
+                                  className={`w-full text-left p-3.5 sm:p-4 rounded-xl border transition-all duration-200 flex items-center justify-between group ${isSelected
+                                    ? 'border-orange-500 bg-orange-500/15 shadow-gem'
+                                    : 'border-white/[0.08] bg-white/[0.02] hover:border-orange-500/40 hover:bg-white/[0.05]'
+                                    }`}
                                 >
                                   <div className="flex items-center space-x-3">
                                     <span
-                                      className={`w-7 h-7 rounded-md font-mono text-xs font-bold flex items-center justify-center border transition-colors ${
-                                        isSelected
-                                          ? 'bg-orange-500 border-orange-500 text-white'
-                                          : 'bg-zinc-900 border-white/10 text-zinc-400 group-hover:border-orange-400/50 group-hover:text-zinc-200'
-                                      }`}
+                                      className={`w-7 h-7 rounded-md font-mono text-xs font-bold flex items-center justify-center border transition-colors ${isSelected
+                                        ? 'bg-orange-500 border-orange-500 text-white'
+                                        : 'bg-zinc-900 border-white/10 text-zinc-400 group-hover:border-orange-400/50 group-hover:text-zinc-200'
+                                        }`}
                                     >
                                       {opt.key}
                                     </span>
                                     <span
-                                      className={`text-sm sm:text-base font-medium ${
-                                        isSelected ? 'text-white' : 'text-zinc-300 group-hover:text-white'
-                                      }`}
+                                      className={`text-sm sm:text-base font-medium ${isSelected ? 'text-white' : 'text-zinc-300 group-hover:text-white'
+                                        }`}
                                     >
                                       {opt.label}
                                     </span>
@@ -356,26 +353,23 @@ export default function MultiStepForm({ onComplete }: MultiStepFormProps) {
                                   key={opt.key || opt.value}
                                   type="button"
                                   onClick={() => handleMultiToggle(fieldName, opt.value)}
-                                  className={`text-left p-3.5 rounded-xl border transition-all duration-200 flex items-center justify-between group ${
-                                    isSelected
-                                      ? 'border-orange-500 bg-orange-500/15 shadow-gem'
-                                      : 'border-white/[0.08] bg-white/[0.02] hover:border-orange-500/40 hover:bg-white/[0.05]'
-                                  }`}
+                                  className={`text-left p-3.5 rounded-xl border transition-all duration-200 flex items-center justify-between group ${isSelected
+                                    ? 'border-orange-500 bg-orange-500/15 shadow-gem'
+                                    : 'border-white/[0.08] bg-white/[0.02] hover:border-orange-500/40 hover:bg-white/[0.05]'
+                                    }`}
                                 >
                                   <div className="flex items-center space-x-3">
                                     <div
-                                      className={`w-5 h-5 rounded flex items-center justify-center border transition-colors ${
-                                        isSelected
-                                          ? 'bg-orange-500 border-orange-500 text-white'
-                                          : 'border-zinc-700 bg-zinc-900 group-hover:border-orange-500/50'
-                                      }`}
+                                      className={`w-5 h-5 rounded flex items-center justify-center border transition-colors ${isSelected
+                                        ? 'bg-orange-500 border-orange-500 text-white'
+                                        : 'border-zinc-700 bg-zinc-900 group-hover:border-orange-500/50'
+                                        }`}
                                     >
                                       {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
                                     </div>
                                     <span
-                                      className={`text-xs sm:text-sm font-medium ${
-                                        isSelected ? 'text-white' : 'text-zinc-300 group-hover:text-white'
-                                      }`}
+                                      className={`text-xs sm:text-sm font-medium ${isSelected ? 'text-white' : 'text-zinc-300 group-hover:text-white'
+                                        }`}
                                     >
                                       {opt.label}
                                     </span>
@@ -498,14 +492,15 @@ export default function MultiStepForm({ onComplete }: MultiStepFormProps) {
                           </span>
                         </div>
 
-                        {/* Phone Number (Optional) */}
+                        {/* Phone Number */}
                         <div>
                           <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1.5 flex items-center justify-between">
-                            <span>Phone Number (Optional)</span>
-                            <span className="text-zinc-500 font-normal lowercase">for WhatsApp follow-up</span>
+                            Phone Number<span className="text-orange-500">*</span>
+                            {/* <span className="text-zinc-500 font-normal lowercase">for WhatsApp follow-up</span> */}
                           </label>
                           <input
                             type="tel"
+                            required
                             value={responses.phone}
                             onChange={(e) =>
                               setResponses((prev) => ({ ...prev, phone: e.target.value }))
@@ -553,11 +548,10 @@ export default function MultiStepForm({ onComplete }: MultiStepFormProps) {
                 type="button"
                 onClick={handlePrev}
                 disabled={currentStep === 0}
-                className={`p-2 sm:px-3 sm:py-2 rounded-lg border text-xs sm:text-sm font-medium flex items-center space-x-1.5 transition-colors ${
-                  currentStep === 0
-                    ? 'border-white/5 text-zinc-600 cursor-not-allowed'
-                    : 'border-white/10 text-zinc-300 hover:text-white hover:bg-white/5'
-                }`}
+                className={`p-2 sm:px-3 sm:py-2 rounded-lg border text-xs sm:text-sm font-medium flex items-center space-x-1.5 transition-colors ${currentStep === 0
+                  ? 'border-white/5 text-zinc-600 cursor-not-allowed'
+                  : 'border-white/10 text-zinc-300 hover:text-white hover:bg-white/5'
+                  }`}
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span className="hidden sm:inline">Back</span>
